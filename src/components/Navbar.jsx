@@ -1,8 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
+import { useState } from "react";
+import staticMoviesList from "../utils/staticMovies.json";
 
 const Navbar = () => {
   const { user, logOut } = UserAuth();
+  const [search, setSearch] = useState("");
+  // const [jsonData, setJsonData] = useState(staticMoviesList);
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
@@ -11,6 +15,22 @@ const Navbar = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const fetchData = (value) => {
+    const results = staticMoviesList.MoviesList.filter((searchList) => {
+      return (
+        value &&
+        searchList &&
+        searchList.title &&
+        searchList.title.toLowerCase().includes(value)
+      );
+    });
+    setSearch(results);
+  };
+
+  const handleChange = (value) => {
+    setSearch(value);
+    fetchData(value);
   };
 
   return (
@@ -30,6 +50,8 @@ const Navbar = () => {
             type="text"
             placeholder="Search Your Movies/Shows"
             className="bg-black/60 p-2 w-[250px] text-white outline-none mr-20"
+            value={search}
+            onChange={(e) => handleChange(e.target.value)}
           />
           <Link to={"/account"}>
             <button className="text-white pr-4">Account</button>
@@ -47,6 +69,8 @@ const Navbar = () => {
             type="text"
             placeholder="Search Your Movies/Shows"
             className="bg-black/60 p-2 w-[250px] text-white outline-none mr-20"
+            value={search}
+            onChange={(e) => handleChange(e.target.value)}
           />
           <Link to={"/login"}>
             <button className="text-white pr-4">Sign In</button>

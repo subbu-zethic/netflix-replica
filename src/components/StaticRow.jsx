@@ -3,7 +3,7 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import staticMoviesList from "../utils/staticMovies.json";
 import StaticMovie from "./StaticMovie";
 
-const StaticRow = ({ title, rowID }) => {
+const StaticRow = ({ title, rowID, results}) => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     setMovies(staticMoviesList.MoviesList);
@@ -17,7 +17,7 @@ const StaticRow = ({ title, rowID }) => {
     var slider = document.getElementById("slider" + rowID);
     slider.scrollLeft = slider.scrollLeft + 500;
   };
-  console.log("movies", movies);
+
   return (
     <>
       <h2 className="text-white font-bold md:text-xl p-4">{title}</h2>
@@ -31,7 +31,7 @@ const StaticRow = ({ title, rowID }) => {
           id={"slider" + rowID}
           className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide relative"
         >
-          {movies.map((item, id) => <StaticMovie key={id} item={item} />)}
+          {movies.map((item, id) => <StaticMovie key={id} item={item} results={results}/>)}
         </div>
         <MdChevronRight
           onClick={slideRight}

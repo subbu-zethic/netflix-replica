@@ -7,14 +7,16 @@ import Account from "./pages/Account";
 import SignUp from "./pages/SignUp";
 import ProtectedRoute from "./components/ProtectedRoute";
 import StaticOverview from "./pages/StaticOverview";
+import { useState } from "react";
 
 function App() {
+  const [results, setResults] = useState([]);
   return (
     <>
       <AuthContextProvider>
-        <Navbar />
+        <Navbar setResults={setResults} />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home results={results} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route

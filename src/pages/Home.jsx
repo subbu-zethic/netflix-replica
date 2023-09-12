@@ -3,11 +3,12 @@ import Row from "../components/Row";
 import StaticRow from "../components/StaticRow";
 import requests from "../requests";
 
-const Home = () => {
+const Home = ({results}) => {
+
   return (
     <div>
       <MainPage />
-      <StaticRow rowID="1" title="Indian Movies" />
+      <StaticRow rowID="1" title="Indian Movies" results={results}/>
       <Row rowID="2" title="UpComing" fetchURL={requests.requestUpcoming} />
       <Row rowID="3" title="Popular" fetchURL={requests.requestPopular} />
       <Row rowID="4" title="Trending" fetchURL={requests.requestTrending} />
