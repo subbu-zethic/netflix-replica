@@ -3,7 +3,7 @@ import { UserAuth } from "../context/AuthContext";
 import { useState } from "react";
 import staticMoviesList from "../utils/staticMovies.json";
 
-const Navbar = () => {
+const Navbar = (props) => {
   const { user, logOut } = UserAuth();
   const [search, setSearch] = useState("");
   // const [jsonData, setJsonData] = useState(staticMoviesList);
@@ -17,6 +17,8 @@ const Navbar = () => {
     }
   };
   const fetchData = (value) => {
+    console.log("value", value);
+    if (value == "") return staticMoviesList.MoviesList;
     const results = staticMoviesList.MoviesList.filter((searchList) => {
       return (
         value &&
@@ -25,7 +27,7 @@ const Navbar = () => {
         searchList.title.toLowerCase().includes(value)
       );
     });
-    setSearch(results);
+    props.setResults(results);
   };
 
   const handleChange = (value) => {

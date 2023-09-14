@@ -20,7 +20,7 @@ const Row = ({ title, fetchURL, rowID }) => {
     var slider = document.getElementById("slider" + rowID);
     slider.scrollLeft = slider.scrollLeft + 500;
   };
-  console.log(movies);
+  // console.log(movies);
   return (
     <>
       <h2 className="text-white font-bold md:text-xl p-4">{title}</h2>

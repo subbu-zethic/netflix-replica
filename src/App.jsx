@@ -8,9 +8,12 @@ import SignUp from "./pages/SignUp";
 import ProtectedRoute from "./components/ProtectedRoute";
 import StaticOverview from "./pages/StaticOverview";
 import { useState } from "react";
+import staticMovieList from "./utils/staticMovies.json";
 
 function App() {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(staticMovieList.MoviesList);
+
+  console.log("search results", results);
   return (
     <>
       <AuthContextProvider>

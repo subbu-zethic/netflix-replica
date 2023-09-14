@@ -39,7 +39,9 @@ const Favourite = () => {
     <>
       <h2 className="text-white font-bold md:text-xl p-4">Favourites</h2>
       {!movies ? (
-        <h3 className="text-white font-bold p-4 z-[100]">"No Movies Added To Favourites"</h3>
+        <h3 className="text-white font-bold p-4 z-[100]">
+          "No Movies Added To Favourites"
+        </h3>
       ) : (
         <div className="relative flex items-center group">
           <MdChevronLeft
